@@ -1,16 +1,17 @@
 <script setup lang="ts">
+  import {ref} from 'vue';
+  import Layout from './components/Layout.vue';
   import NavBar from './components/NavBar.vue';
-  import ThemeToggle from './components/ThemeToggle.vue';
+
+  const isSidebarOpen = ref(false)
 </script>
 
 <template>
-  <div class="app-wrapper">
-    <NavBar></NavBar>
-    <ThemeToggle></ThemeToggle>
-  </div>
-  <main class="main-content">
-    <router-view></router-view>
-  </main>
+
+  <NavBar @toggle-sidebar="isSidebarOpen = !isSidebarOpen"></NavBar>
+
+  <Layout :is-sidebar-open="isSidebarOpen" @close-sidebar="isSidebarOpen = false"></Layout>
+  
 </template>
 
 

@@ -4,7 +4,17 @@ import { ref } from 'vue'
 // 模拟一些博客文章数据
 const posts = ref([
   { id: 1, title: '我的第一篇博客', date: '2026-09-18' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' }
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
+  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
 ])
 </script>
 
