@@ -39,25 +39,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: var(--navbar-height);
   width: 100%;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  border-bottom: 1px solid #d6d5d5;
+  border-bottom: 1px solid var(--border-color);
   
 }
 
 .logo-section {
   display: flex;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .site-title {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-md);
   margin-left: 10px;
-  color: #333;
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .site-title {
+    display: none;
+  }
 }
 
 .avatar {
@@ -72,17 +78,17 @@
 
 .nav-item {
   text-decoration: none;
-  color: #333;
-  font-size: 16px;
+  color: var(--text-color);
+  font-size: var(--font-size-base);
   transition: color 0.3s ease;
   margin-right: 30px;
 }
 
 .nav-item:hover {
-  color: #42b883; /* 鼠标悬浮时的颜色（Vue绿） */
+  color: var(--color-primary);
 }
 
 .is-active {
-  color: #42b883;
+  color: var(--color-primary-hover);
 }
 </style>
