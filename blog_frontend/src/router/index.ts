@@ -7,6 +7,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue')
+    },
+    {
+      path: '/posts',
+      name: 'posts',
+      component: () => import('../views/HomeView.vue')
+    },
+    {
+      path: '/tags',
+      name: 'tags',
+      component: () => import('../views/HomeView.vue')
     }
     //等等
   ]

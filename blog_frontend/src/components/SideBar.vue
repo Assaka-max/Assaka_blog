@@ -1,12 +1,26 @@
 <template>
   <div class="sidebar" :class="{'is-open': isOpen}">
-    <h1>侧边栏</h1>
-    <ThemeToggle></ThemeToggle>
+    <img src="../assets/avatar.jpg" alt="Avatar" class="avatar">
+    <p style="line-height: 0px; font-weight: 500;">Assaka</p>
+
+    <div class="stats">
+      <PostsStat />
+      <TagsStat />
+    </div>
+
+    <div class="social">
+      <ThemeToggle></ThemeToggle>
+      <SocialLink></SocialLink>
+    </div>
+
   </div>
 </template>
 
 <script setup lang="ts">
+  import SocialLink from './SocialLink.vue';
   import ThemeToggle from './ThemeToggle.vue';
+  import PostsStat from './stats/PostsStat.vue';
+  import TagsStat from './stats/TagsStat.vue';
   defineProps<{ isOpen: boolean}>()
   defineEmits<{ (e: 'close-sidebar'): void}>()
 </script>
@@ -17,6 +31,12 @@
   /* 防止被文章挤扁：flex-shrink: 0;  */
   position: sticky; /* 侧边栏跟随滚动 */
   top: 80px; /* 导航栏高度(60) + 一点间距(20) */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 所有子元素水平居中 */
+  text-align: center;    /* 文字居中仍然保留 */
+  gap: 10px;
 }
 
 @media (max-width: 768px) {
@@ -43,5 +63,23 @@
   .sidebar.is-open {
     right: 0;
   }
+
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.social {
+  display: flex;
+  gap: 20px;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
 }
 </style>
