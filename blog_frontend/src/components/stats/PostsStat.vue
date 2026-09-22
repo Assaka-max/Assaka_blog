@@ -11,7 +11,7 @@
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
   import StatItem from './StatItem.vue';
-import { fetchSiteStats } from '@/api/stats.ts';
+  import { getPostsSum } from '@/api/post/posts.ts';
 
   const count = ref(0)
   const loading = ref(true)
@@ -19,8 +19,7 @@ import { fetchSiteStats } from '@/api/stats.ts';
 
   onMounted(async () => {
     try{
-      const data = await fetchSiteStats()
-      count.value = data.posts
+      const count = await getPostsSum()
     } catch (e) {
       error.value = e instanceof Error ? e.message : '加载失败'
     } finally {

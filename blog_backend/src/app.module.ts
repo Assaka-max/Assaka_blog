@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PostModule } from './posts/post.module.js';
+import { TagModule } from './tags/tag.module.js';
 
 
 
@@ -23,8 +23,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         synchronize: true,
       }),
     }),
+    PostModule,
+    TagModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+
 })
 export class AppModule {}
