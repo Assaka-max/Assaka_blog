@@ -12,7 +12,7 @@ export class PostService {
   ){}
 
   async getSum() {
-    const posts = await this.postRepo.count({where: {status: 1}})
-    return posts
+    const sum = await this.postRepo.count({where: {status: 1}})
+    return sum
   }
 }
