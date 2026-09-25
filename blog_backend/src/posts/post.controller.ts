@@ -9,4 +9,9 @@ export class PostController {
   getSum() {
     return this.postService.getSum()
   }
+
+  @Get("archive")
+  archive() {
+    return this.postService.archive()
+  }
 }

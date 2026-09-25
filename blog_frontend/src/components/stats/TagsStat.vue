@@ -19,7 +19,7 @@ const error = ref<string | null>(null)
 
 onMounted(async () => {
   try{
-    const count = await getTagsSum()
+    count.value = await getTagsSum()
   } catch (e) {
     error.value = e instanceof Error ? e.message : '加载失败'
   } finally {

@@ -19,7 +19,7 @@
 
   onMounted(async () => {
     try{
-      const count = await getPostsSum()
+      count.value = await getPostsSum()
     } catch (e) {
       error.value = e instanceof Error ? e.message : '加载失败'
     } finally {

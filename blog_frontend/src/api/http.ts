@@ -5,7 +5,7 @@ export const http = axios.create({
   timeout: 10000,
 });
 
-axios.interceptors.response.use(
+http.interceptors.response.use(
   (response) => {
     const res = response.data;
     if (res.code == 200) {
