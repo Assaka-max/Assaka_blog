@@ -37,6 +37,8 @@
   align-items: center;   /* 所有子元素水平居中 */
   text-align: center;    /* 文字居中仍然保留 */
   gap: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
 }
 
 @media (max-width: 768px) {

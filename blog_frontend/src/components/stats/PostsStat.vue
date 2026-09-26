@@ -1,6 +1,6 @@
 <template>
   <StatItem
-    to="/posts"
+    to="/archive"
     label="POSTS"
     :value="count"
     :loading="loading"
