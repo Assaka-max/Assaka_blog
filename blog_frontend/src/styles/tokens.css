@@ -9,13 +9,15 @@
   --text-color: #333333;
   --text-color-secondary: #999999;
   --border-color: #807e7e79;
+  --border-color-secondary: #e3e3e3;
 
   /* 响应式间距与字体（使用 clamp 函数实现流式适配） */
   --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --font-size-md: clamp(18px, 1rem + 1vw, 20px);
   --font-size-title: clamp(26px, 1rem + 1vw, 30px);
   --font-weight-md: 500;
-  --spacing-md: clamp(10px, 1vw, 24px);
+  --font-weight-lg: 800;
+  --spacing-md: clamp(14px, 1vw, 26px);
   --spacing-lg: clamp(24px, 2.5vw, 48px);
 
   /* 布局尺寸 */
