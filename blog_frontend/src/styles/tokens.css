@@ -9,7 +9,7 @@
   --text-color: #333333;
   --text-color-secondary: #999999;
   --border-color: #807e7e79;
-  --border-color-secondary: #e3e3e3;
+  --border-color-secondary: #75747440;
 
   /* 响应式间距与字体（使用 clamp 函数实现流式适配） */
   --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);

@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Param } from "@nestjs/common";
 import { PostService } from "./post.service.js";
 
 @Controller('posts')
@@ -13,5 +13,10 @@ export class PostController {
   @Get("archive")
   archive() {
     return this.postService.archive()
+  }
+
+  @Get(":slug")
+  getPost(@Param("slug") slug: string) {
+    return this.postService.getPost(slug)
   }
 }

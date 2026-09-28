@@ -1,8 +1,9 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Post } from "./post.entity.js";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ArchiveYearDto } from "../dto/ArchiveYearDto.js";
+import { PostDto } from "../dto/PostDto.js";
 
 @Injectable()
 export class PostService {
@@ -39,5 +40,14 @@ export class PostService {
         }))
       }))
     return archiveYears
+  }
+
+  async getPost(slug: string) {
+    const post: PostDto | null = await this.postRepo.findOne({
+      where: {slug, status: 1},
+      relations: { tags: true },
+    })
+    if (!post) throw new NotFoundException('Post not found')
+    return post
   }
 }

@@ -17,6 +17,11 @@ const router = createRouter({
       path: '/tags',
       name: 'tags',
       component: () => import('../views/HomeView.vue')
+    },
+    {
+      path: '/posts/:slug',
+      name: 'post',
+      component: () => import('../views/PostView.vue')
     }
     //等等
   ]
