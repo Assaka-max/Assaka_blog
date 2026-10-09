@@ -115,7 +115,6 @@
 
 .post-layout {
   display: flex;
-  align-items: flex-start;
   gap: var(--spacing-lg);
 }
 
@@ -137,8 +136,6 @@
 
 .article-content :deep(h2) {
   margin: 1.6em 0 0.6em;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .article-content :deep(h3) {

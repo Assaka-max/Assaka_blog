@@ -90,10 +90,9 @@ onUnmounted(() => {
   position: sticky;
   top: 80px; /* 避开顶部导航栏 */
   background-color: var(--bg-color);
-  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   max-height: calc(100vh - 100px);
   overflow-y: auto;
 }

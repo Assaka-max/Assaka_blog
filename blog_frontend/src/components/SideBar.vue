@@ -31,6 +31,7 @@
   /* 防止被文章挤扁：flex-shrink: 0;  */
   position: sticky; /* 侧边栏跟随滚动 */
   top: 80px; /* 导航栏高度(60) + 一点间距(20) */
+  padding-bottom: 10px;
   
   display: flex;
   flex-direction: column;
