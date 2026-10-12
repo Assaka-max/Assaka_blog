@@ -1,4 +1,28 @@
 import MarkdownIt from 'markdown-it'
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import typescript from 'highlight.js/lib/languages/typescript'
+import xml from 'highlight.js/lib/languages/xml'
+import css from 'highlight.js/lib/languages/css'
+import json from 'highlight.js/lib/languages/json'
+import bash from 'highlight.js/lib/languages/bash'
+import markdown from 'highlight.js/lib/languages/markdown'
+import python from 'highlight.js/lib/languages/python'
+import sql from 'highlight.js/lib/languages/sql'
+import yaml from 'highlight.js/lib/languages/yaml'
+import java from 'highlight.js/lib/languages/java'
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('typescript', typescript)
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('json', json)
+hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('markdown', markdown)
+hljs.registerLanguage('python', python)
+hljs.registerLanguage('sql', sql)
+hljs.registerLanguage('yaml', yaml)
+hljs.registerLanguage('java', java)
 
 export interface TocItem {
   id: string
@@ -16,10 +40,23 @@ interface RenderEnv {
   used: Map<string, number>
 }
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+}
+
 const md = new MarkdownIt({
   html: false, // 禁止在 Markdown 里直接写 HTML 标签（防止 XSS 攻击）
   linkify: true, // 自动把纯文本里的网址转成可点击的链接
   breaks: true, // 把单个换行符 \n 转换成 <br>（适合博客写作习惯）
+  highlight(code, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      return `<pre class="hljs"><code>${hljs.highlight(code, { language: lang }).value}</code></pre>`
+    }
+    return `<pre class="hljs"><code>${escapeHtml(code)}</code></pre>`
+  },
 })
 
 function slugify(text: string): string {

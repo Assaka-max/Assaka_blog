@@ -157,11 +157,18 @@
 .article-content :deep(pre) {
   padding: 12px 16px;
   border-radius: var(--border-radius);
-  background-color: var(--bg-color-secondary);
   overflow-x: auto;
 }
 
-.article-content :deep(code) {
+.article-content :deep(pre code) {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.article-content :deep(:not(pre) > code) {
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background-color: var(--bg-color-secondary);
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: 0.9em;
 }

@@ -47,7 +47,7 @@
     position: fixed;
     top: var(--navbar-height);
     right: -100%; /* 默认移出屏幕外 */
-    width: 250px;
+    width: 200px;
     height: calc(100vh - var(--navbar-height));
     z-index: 200; /* 高于遮罩层 */
 
