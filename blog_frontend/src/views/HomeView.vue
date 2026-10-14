@@ -1,43 +1,73 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<template>
+  <main class="home-view">
 
-// 模拟一些博客文章数据
-const posts = ref([
-  { id: 1, title: '我的第一篇博客', date: '2026-09-18' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-  { id: 2, title: 'Vue3 + TypeScript 学习笔记', date: '2026-09-17' },
-])
+    <!-- 主页文章列表区域 -->
+    <section class="post-list">
+      <p v-if="loading" class="state">加载中...</p>
+      <p v-else-if="error" class="state">{{ error }}</p>
+      <p v-else-if="posts.length === 0" class="state">暂无文章</p>
+
+      <template v-else>
+        <div class="card-list">
+          <PostCard v-for="post in posts" :key="post.id" :post="post" />
+        </div>
+
+        <nav v-if="totalPages > 1" class="pagination">
+          <button :disabled="page === 1" @click="goTo(page - 1)">上一页</button>
+          <button
+            v-for="p in totalPages"
+            :key="p"
+            :class="{ 'is-active': p === page }"
+            @click="goTo(p)"
+          >
+            {{ p }}
+          </button>
+          <button :disabled="page === totalPages" @click="goTo(page + 1)">下一页</button>
+        </nav>
+      </template>
+    </section>
+    
+  </main>
+</template>
+
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+import { getPostList, type PostCardItem } from '@/api/post/posts'
+import PostCard from '@/components/PostCard.vue'
+
+const posts = ref<PostCardItem[]>([])
+const total = ref(0)
+const page = ref(1)
+const pageSize = 10
+const loading = ref(true)
+const error = ref('')
+
+const totalPages = computed(() => Math.max(1, Math.ceil(total.value / pageSize)))
+
+async function fetchPosts() {
+  loading.value = true
+  error.value = ''
+  try {
+    const res = await getPostList(page.value, pageSize)
+    posts.value = res.list
+    total.value = res.total
+  } catch (e) {
+    error.value = e instanceof Error ? e.message : '加载失败'
+  } finally {
+    loading.value = false
+  }
+}
+
+function goTo(target: number) {
+  if (target < 1 || target > totalPages.value || target === page.value) return
+  page.value = target
+  fetchPosts()
+}
+
+onMounted(fetchPosts)
 </script>
 
-<template>
-  <div class="home-view">
-    <!-- 个人简介区域 -->
-    <section class="hero-section">
-      <h1>欢迎来到 lly 的博客</h1>
-      <p>记录生活，分享技术。</p>
-    </section>
 
-    <!-- 文章列表区域 -->
-    <section class="post-list">
-      <h2>最新文章</h2>
-      <ul>
-        <li v-for="post in posts" :key="post.id" class="post-item">
-          <span class="post-title">{{ post.title }}</span>
-          <span class="post-date">{{ post.date }}</span>
-        </li>
-      </ul>
-    </section>
-  </div>
-</template>
 
 <style scoped>
 /* scoped 表示这些样式只对当前组件生效，不会污染其他页面 */
@@ -47,33 +77,49 @@ const posts = ref([
   padding: 20px;
 }
 
-.hero-section {
-  text-align: center;
-  padding: 40px 0;
-  background-color: #f0fdf4; /* 淡淡的绿色背景 */
-  border-radius: 12px;
-  margin-bottom: 30px;
-}
-
-.post-item {
+.post-list {
   display: flex;
-  justify-content: space-between;
-  padding: 15px 0;
-  border-bottom: 1px dashed #eee;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.post-title {
-  font-weight: bold;
-  color: #333;
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.state {
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  color: var(--text-color-secondary);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pagination button {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   cursor: pointer;
 }
 
-.post-title:hover {
-  color: #42b883;
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.post-date {
-  color: #999;
-  font-size: 14px;
+.pagination button.is-active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
 }
 </style>

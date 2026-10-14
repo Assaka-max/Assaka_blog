@@ -25,3 +25,25 @@ export async function getPostsSum() {
 export function getPost(slug: string) {
   return http.get<Post, Post>(`/posts/${slug}`)
 }
+
+export interface PostCardItem {
+  id: number
+  title: string
+  slug: string
+  summary: string | null
+  updatedAt: string
+  tags: PostTag[]
+}
+
+export interface PostListResult {
+  list: PostCardItem[]
+  total: number
+  page: number
+  pageSize: number
+}
+
+export function getPostList(page = 1, pageSize = 10) {
+  return http.get<PostListResult, PostListResult>('/posts', {
+    params: { page, pageSize },
+  })
+}

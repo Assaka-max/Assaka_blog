@@ -4,6 +4,7 @@ import { Post } from "./post.entity.js";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ArchiveYearDto } from "../dto/ArchiveYearDto.js";
 import { PostDto } from "../dto/PostDto.js";
+import { PostCardDto } from "../dto/PostCardDto.js";
 
 @Injectable()
 export class PostService {
@@ -49,5 +50,38 @@ export class PostService {
     })
     if (!post) throw new NotFoundException('Post not found')
     return post
+  }
+
+  async getList(page: number, pageSize: number) {
+    const total = await this.postRepo.count({where: {status: 1}})
+    const posts = await this.postRepo.find({
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        summary: true,
+        updatedAt: true,
+        tags: {id: true, name: true, slug: true},
+      },
+      where: {status: 1},
+      relations: { tags: true },
+      order: {updatedAt: 'DESC'},
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    })
+
+    const list: PostCardDto[] = posts.map((post) => ({
+      id: post.id,
+      title: post.title,
+      slug: post.slug,
+      summary: post.summary,
+      updatedAt: post.updatedAt,
+      tags: post.tags.map((tag) => ({
+        id: tag.id,
+        name: tag.name,
+        slug: tag.slug,
+      })),
+    }))
+    return {list, total, page, pageSize}
   }
 }

@@ -30,7 +30,6 @@
   max-width: var(--max-width);
   margin: 0 auto;
   gap: 20px; /* 侧边栏和文章之间的间距 */
-  padding: 20px;
   align-items: flex-start; /* 顶部对齐，防止侧边栏被拉伸 */
 }
 
