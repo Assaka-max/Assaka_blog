@@ -30,7 +30,8 @@
   width: 250px; /* 侧边栏固定宽度 */
   /* 防止被文章挤扁：flex-shrink: 0;  */
   position: sticky; /* 侧边栏跟随滚动 */
-  top: 80px; /* 导航栏高度(60) + 一点间距(20) */
+  top: calc(var(--navbar-height) + 20px); /* 导航栏高度 + 间距(20px) */
+  margin-top: 20px; /* 让自然位置与吸附位置一致，避免短页面顶部与导航栏重合 */
   padding-bottom: 10px;
   
   display: flex;

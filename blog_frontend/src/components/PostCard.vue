@@ -44,8 +44,8 @@
     align-items : center;
     gap : 8px ;
     padding : 20px ;
-    border-radius : var (--border-radius);
-    background-color : var (--bg-color);
+    border-radius : var(--border-radius);
+    background-color : var(--bg-color);
     border-top: 1px solid var(--border-color-secondary);
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     border-radius: 10px;
@@ -60,6 +60,32 @@
 
   .card-title:hover {
     color: var(--color-primary-hover);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: flex-start;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tag-item {
+    padding: 2px 10px;
+    border-radius: 999px;
+    background-color: var(--bg-color-secondary);
+    color: var(--color-primary);
+    font-size: 12px;
+  }
+
+  .more-link {
+    padding: 2px 10px;
+    border-radius: 999px;
+    background-color: var(--bg-color-secondary);
+    color: var(--color-primary);
+    text-decoration: none;
   }
 </style>
 

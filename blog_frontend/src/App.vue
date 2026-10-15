@@ -21,6 +21,7 @@
 body, html {
   margin: 0;
   padding: 0;
+  scrollbar-gutter: stable;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.2s ease, color 0.2s ease;
