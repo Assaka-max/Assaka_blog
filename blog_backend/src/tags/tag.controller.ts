@@ -9,4 +9,9 @@ export class TagController {
   getSum() {
     return this.tagService.getSum()
   }
+
+  @Get()
+  getList() {
+    return this.tagService.getList()
+  }
 }
