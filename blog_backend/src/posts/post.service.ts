@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Repository } from "typeorm";
+import { FindOptionsWhere, Repository } from "typeorm";
 import { Post } from "./post.entity.js";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ArchiveYearDto } from "../dto/ArchiveYearDto.js";
@@ -52,8 +52,11 @@ export class PostService {
     return post
   }
 
-  async getList(page: number, pageSize: number) {
-    const total = await this.postRepo.count({where: {status: 1}})
+  async getList(page: number, pageSize: number, tag?: string) {
+    const where: FindOptionsWhere<Post> = { status: 1 }
+    if (tag) where.tags = { slug: tag }
+
+    const total = await this.postRepo.count({ where })
     const posts = await this.postRepo.find({
       select: {
         id: true,
@@ -63,7 +66,7 @@ export class PostService {
         updatedAt: true,
         tags: {id: true, name: true, slug: true},
       },
-      where: {status: 1},
+      where,
       relations: { tags: true },
       order: {updatedAt: 'DESC'},
       skip: (page - 1) * pageSize,

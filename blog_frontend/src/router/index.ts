@@ -22,7 +22,12 @@ const router = createRouter({
       path: '/posts/:slug',
       name: 'post',
       component: () => import('../views/PostView.vue')
-    }
+    },
+    {
+      path: '/tags/:slug',
+      name: 'tagPost',
+      component: () => import('../views/TagPostView.vue')
+    },
     //等等
   ]
 })

@@ -42,8 +42,8 @@ export interface PostListResult {
   pageSize: number
 }
 
-export function getPostList(page = 1, pageSize = 10) {
+export function getPostList(page = 1, pageSize = 10, tag?: string) {
   return http.get<PostListResult, PostListResult>('/posts', {
-    params: { page, pageSize },
+    params: { page, pageSize, ...(tag ? { tag } : {}) },
   })
 }

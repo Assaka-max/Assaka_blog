@@ -70,15 +70,16 @@ onMounted(async () => {
   gap: 6px;
   padding: 2px 10px;
   border-radius: 999px;
-  background-color: var(--bg-color-secondary);
   color: var(--color-primary);
-  font-size: 12px;
+  font-size: var(--font-size-base);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
+  border: 1px solid var(--border-color-secondary);
 }
 
 .tag-item:hover {
   color: var(--color-primary-hover);
+  background-color: var(--bg-color-secondary);
 }
 
 .tag-count {

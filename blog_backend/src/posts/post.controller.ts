@@ -24,9 +24,10 @@ export class PostController {
   getList(
     @Query("page") page: string,
     @Query("pageSize") pageSize: string,
+    @Query("tag") tag?: string,
   ) {
     const currentPage = Math.max(1, Number(page) || 1)
     const size = Math.min(50, Math.max(1, Number(pageSize) || 10))
-    return this.postService.getList(currentPage, size)
+    return this.postService.getList(currentPage, size, tag)
   }
 }
