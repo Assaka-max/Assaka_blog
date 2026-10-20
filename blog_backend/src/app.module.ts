@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PostModule } from './posts/post.module.js';
 import { TagModule } from './tags/tag.module.js';
+import { PageModule } from './pages/page.module.js';
 
 
 
@@ -24,7 +25,8 @@ import { TagModule } from './tags/tag.module.js';
       }),
     }),
     PostModule,
-    TagModule
+    TagModule,
+    PageModule,
   ],
 
 })

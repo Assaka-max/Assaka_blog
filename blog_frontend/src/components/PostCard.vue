@@ -15,8 +15,8 @@
     </RouterLink>
 
     <ul class="tag-list">
-      <li v-for="tag in post.tags" :key="tag.id" class="tag-item">
-        {{ tag.name }}
+      <li v-for="tag in post.tags" :key="tag.id">
+        <Tag :tag="tag" />
       </li>
     </ul>
 
@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
   import type { PostCardItem } from '@/api/post/posts'
+import Tag from './Tag.vue';
 
   defineProps<{ post : PostCardItem }>()
 
@@ -70,14 +71,6 @@
     margin: 0;
     padding: 0;
     list-style: none;
-  }
-
-  .tag-item {
-    padding: 2px 10px;
-    border-radius: 999px;
-    background-color: var(--bg-color-secondary);
-    color: var(--color-primary);
-    font-size: 12px;
   }
 
   .more-link {

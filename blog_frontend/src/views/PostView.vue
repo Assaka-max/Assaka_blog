@@ -12,8 +12,8 @@
             {{ formatDate(post.publishedAt) }}
           </time>
           <ul class="tag-list">
-            <li v-for="tag in post.tags" :key="tag.id" class="tag-item">
-              {{ tag.name }}
+            <li v-for="tag in post.tags" :key="tag.id">
+              <Tag :tag="tag" />
             </li>
           </ul>
         </div>
@@ -32,6 +32,7 @@
   import { getPost, type Post } from '@/api/post/posts'
   import { renderMarkdown, type RenderedMarkdown } from '@/utils/markdown'
   import TableOfContents from '@/components/TableOfContents.vue'
+import Tag from '@/components/Tag.vue'
   
   const route = useRoute()
   const post = ref<Post | null>(null)
@@ -103,14 +104,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.tag-item {
-  padding: 2px 10px;
-  border-radius: 999px;
-  background-color: var(--bg-color-secondary);
-  color: var(--color-primary);
-  font-size: 0.75rem;
 }
 
 .post-layout {

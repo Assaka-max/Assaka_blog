@@ -36,7 +36,7 @@
   }
   const navItems: NavItem[] = [
     {name: '主页', path: '/'},
-    {name: '关于', path: '/about'}
+    {name: '关于', path: '/pages/about'}
   ]
   const route = useRoute()
 
