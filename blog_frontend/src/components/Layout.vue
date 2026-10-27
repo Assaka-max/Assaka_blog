@@ -13,6 +13,10 @@
 
     <main class="content">
       <router-view></router-view>
+
+      <footer v-if="icp" class="site-footer">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{{ icp }}</a>
+      </footer>
     </main>
   </div>
   
@@ -22,6 +26,9 @@
   import SideBar from './SideBar.vue';
   defineProps<{isSidebarOpen: boolean}>()
   defineEmits<{ (e: 'close-sidebar'): void}>()
+
+  // 备案号在构建时注入（docker-compose 的 VITE_ICP_BEIAN），未配置则不显示页脚
+  const icp = import.meta.env.VITE_ICP_BEIAN ?? ''
 </script>
 
 <style scoped>
@@ -36,6 +43,23 @@
 .content {
   flex: 1; /* 文章区占据剩余宽度 */
   min-width: 0; /* 核心细节：防止宽表格或长代码撑破页面 */
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: 12px;
+}
+
+.site-footer a {
+  color: var(--text-color-secondary);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--color-primary);
 }
 
 /* 移动端遮罩层样式 */

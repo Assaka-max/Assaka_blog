@@ -21,7 +21,8 @@ import { PageModule } from './pages/page.module.js';
         password: config.get<string>('DB_PASSWORD'),
         database: config.get<string>('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: true,
+        // 生产环境关闭自动建表：表结构以 assaka_blog.sql 为准，避免实体一改就改库
+        synchronize: false,
       }),
     }),
     PostModule,
