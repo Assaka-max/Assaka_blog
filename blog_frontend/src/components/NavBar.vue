@@ -49,10 +49,11 @@
   top: 0;
   z-index: 100;
 
-  /* 毛玻璃核心：半透明背景 + 模糊 */
+  /* 毛玻璃核心：半透明背景 + 模糊
+     -webkit- 必须写在标准属性之前，否则生产构建压缩时会丢掉标准属性 */
   background-color: var(--frosted-background-color);
-  backdrop-filter: var(--frosted-backdrop-filter);
-  -webkit-backdrop-filter: var(--frosted-webkit-backdrop-filter);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
 
   display: flex;
   justify-content: space-between;

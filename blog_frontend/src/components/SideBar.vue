@@ -52,10 +52,10 @@
     height: calc(100vh - var(--navbar-height));
     z-index: 200; /* 高于遮罩层 */
 
-    /* 磨砂效果 */
+    /* 磨砂效果（-webkit- 在前，防止生产构建丢掉标准属性） */
     background-color: var(--frosted-background-color);
-    backdrop-filter: var(--frosted-backdrop-filter);
-    -webkit-backdrop-filter: var(--frosted-webkit-backdrop-filter);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
 
     transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 滑入动画 */
     padding: 20px;
